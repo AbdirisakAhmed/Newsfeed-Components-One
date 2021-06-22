@@ -9,6 +9,33 @@ let menuItems = [
     'Log Out'
   ];
   
+
+
+  function menuMaker (data){
+    // step 1: Samee elements-ka
+    const menu = document.createElement("div")
+    const unOrder = document.createElement("ul")
+    // Step 2: Isku xir
+    menu.appendChild(unOrder)
+    // Step 3: Soo jiido array-ga magacyada menu-ga ay ku jiraan, adigoo parameter-ka functionka soo marinaayo, kadib map ku samee. Sameynta 'li' oo dhan iyo isku xirka 'ul' iyo 'li' waxay galaayaan map-ka dhexdiisa. Taas waxay sameyneysaa hadaa menu cusub ku darto, inuu si automatic ah u sameysmani doono.
+    data.map(function(item) {
+      const list = document.createElement("li")
+        unOrder.appendChild(list)
+      list.textContent = item
+    })
+    // Step 4: Class-ka ku dar
+    menu.classList.add("menu")
+    // Step 5: Click method-ka samee, u yeer '.menu-button', kadib addEventListener ku xir, kadib gudaheeda, 'menu' kore u yeer oo 'menu--open' class ah toggle dheh
+    const menuButton = document.querySelector(".menu-button")
+    menuButton.addEventListener("click", function(event){
+        menu.classList.toggle("menu--open")
+    })
+    return menu
+  }
+  // Step 6: Soo jiido '.header' kadib appendChild ku dheh function-ka adigoo function-ka siinaayo data-da kor ku taalo oo list of menu ku jiraan.
+    const myHeader = document.querySelector(".header")
+    myHeader.appendChild(menuMaker(menuItems));
+ 
   /* 
     Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
   
@@ -31,4 +58,4 @@ let menuItems = [
   
     Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
   */
-  z
+  

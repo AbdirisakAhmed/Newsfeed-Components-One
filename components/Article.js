@@ -74,7 +74,62 @@ const data = [
       sit amet, consectetur adipiscing elit. Nidoking Lorem ipsum`
     }
   ];
+
+  function articleMaker(myArticle, date, content){
+    //Step 1: Creating Elements
+    const article = document.createElement("div")
+    const head = document.createElement("h2")
+    const dateContent =  document.createElement("p")
+    // const panelButton = document.createElement("div")
+    const btnOpen = document.createElement("button")
+    const btnClose = document.createElement("button")
+    const contents = document.createElement("span")
+    
+     
+    //Step2 :Connecting Elements
+    article.appendChild(head);
+    // article.appendChild(btnOpen);
+    article.appendChild(btnClose)
+    article.appendChild(dateContent);
+    article.appendChild(contents);
+    
+    //Step 3: Adding Contents
+
+    const open = "\u25bc"
+    const close = "\u25b2"
+    
+
+    
+
+
+    head.textContent = myArticle;
+    dateContent.textContent = date;
+    contents.textContent = content;
+    // btnOpen.textContent = open;
+    btnClose.textContent = close
+    
+   //Step 4: Adding ClassList
+    article.classList.add("article");
+    dateContent.classList.add("date");
+    // btnOpen.classList.add("expandButton")
+    btnClose.classList.add("expandButton")
+    contents.classList.add("article-open")
+
+   //Step 5 : Functionality by Using AddEventListener
+   btnClose.addEventListener("click" , function(event){
+          
+             btnClose.classList.toggle("expandButton")  
+         })
+    return article
+  }
   
+  const articles = document.querySelector(".articles")
+  
+  data.map(function(item){
+  articles.appendChild(articleMaker(item.title, item.date, item.content))
+  })
+  
+
   /*
     Step 1: Write a component called 'articleMaker' to create an article.
     Your component is a function that takes an article object as its only argument,
@@ -83,11 +138,13 @@ const data = [
     <div class="article">
       <h2>{title of the article}</h2>
       <p class="date">{date of the article}</p>
-  
+      
       {article content goes here}
   
       <span class="expandButton">+</span>
     </div>
+
+ 
   
     Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
     This listener should toggle the class 'article-open' on div.article.
@@ -100,5 +157,3 @@ const data = [
     Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
     Refresh the page to see the new article.
   */
-  
-
